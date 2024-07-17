@@ -152,7 +152,8 @@ type BudgetFormProps = {
   onError: (values: FieldErrors) => void
   handlePlusClick: () => void
   handleMinusClick: () => void
-  handleResults: (values: z.infer<typeof formSchema>) => void
+  // handleResults: (values: z.infer<typeof formSchema>) => void
+  handleResults: () => void
 }
 
 export function BudgetForm({
@@ -213,8 +214,8 @@ export function BudgetForm({
   })
 
   useEffect(() => {
-    const subscription = form.watch((data) => {
-      handleResults(data)
+    const subscription = form.watch(() => {
+      handleResults()
     })
 
     return () => {

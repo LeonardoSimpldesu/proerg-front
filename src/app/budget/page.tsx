@@ -61,7 +61,8 @@ export default function BudgetPage() {
     console.log(values)
   }
 
-  function handleResults(values: z.infer<typeof formSchema>) {
+  // values: z.infer<typeof formSchema>
+  function handleResults() {
     electricalProject.current = Math.floor(Math.random() * 6) + 1
     hydrosanitary.current = Math.floor(Math.random() * 6) + 1
     materialList.current = Math.floor(Math.random() * 6) + 1
