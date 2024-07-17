@@ -8,10 +8,10 @@ import {
   CalendarClock,
   Check,
   Dot,
-  Lightbulb,
+  HandCoins,
+  Mail,
   NotepadText,
   ScrollText,
-  Send,
 } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -26,6 +26,18 @@ import { z } from 'zod'
 import Image from 'next/image'
 import { FieldErrors } from 'react-hook-form'
 import { HamburguerNavigation } from './components/hamburguer-navigation'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
+import { useRouter } from 'next/navigation'
 
 export default function BudgetPage() {
   const [currentPage, setCurrentPage] = useState(1)
@@ -34,6 +46,7 @@ export default function BudgetPage() {
   const materialList = useRef(0)
   const telecomProject = useRef(0)
   const TOTAL_OF_PAGES = 8
+  const router = useRouter()
 
   function navigationChangePage(reqPage: number) {
     setCurrentPage(reqPage)
@@ -72,7 +85,26 @@ export default function BudgetPage() {
   return (
     <div className="mx-auto flex min-h-screen w-[90vw] 2xl:w-[80vw] flex-col py-16">
       <div className="flex w-full justify-between">
-        <ArrowLeft />
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <ArrowLeft />
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Deseja sair?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Ao clicar em sair, voce perderá todos os dados preenchidos até o
+                momento
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={() => router.push('/dashboard')}>
+                Sair
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
         <HamburguerNavigation
           pageCurrent={currentPage}
           navigationChangePage={navigationChangePage}
@@ -109,23 +141,23 @@ export default function BudgetPage() {
                   <Building color="#fff" size={24} />
                 </div>
                 <p>
-                  Essa planilha somente poderá ser aplicada para aptos de
+                  Essa planilha somente poderá ser aplicada para apartamentos de
                   modificações que o projeto original foi elaborado pela Proerg.
                 </p>
               </div>
               <div className="flex items-center gap-4">
                 <div className="w-fit rounded-xl bg-primary p-4">
-                  <Lightbulb color="#fff" size={24} />
+                  <HandCoins color="#fff" size={24} />
                 </div>
                 <p>
                   O objetivo desta planilha é deixar de forma prática a
-                  precificação de modificação de aptos, para que facilte a
-                  construtora nas tomadas de decisões.
+                  precificação de modificação de apartamentos, para que facilte
+                  a construtora nas tomadas de decisões.
                 </p>
               </div>
               <div className="flex items-center gap-4">
                 <div className="w-fit rounded-xl bg-primary p-4">
-                  <Send color="#fff" size={24} />
+                  <Mail color="#fff" size={24} />
                 </div>
                 <p>
                   Para validação da proposta é necessário enviar essa planilha
@@ -200,6 +232,7 @@ export default function BudgetPage() {
             handleMinusClick={handleMinusClick}
             handlePlusClick={handlePlusClick}
             handleResults={handleResults}
+            navigationChangePage={navigationChangePage}
           />
         </div>
         <div className="col-span-3 xl:col-span-3 2xl:col-span-3">

@@ -100,7 +100,7 @@ export function HamburguerNavigation({
               )}
               onClick={() => navigationChangePage(7)}
             >
-              Descrição gestão
+              Descrição da gestão
             </li>
             <li
               className={twJoin(

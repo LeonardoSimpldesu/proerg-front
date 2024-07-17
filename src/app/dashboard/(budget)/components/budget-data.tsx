@@ -10,7 +10,6 @@ import {
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableFooter,
   TableHead,
@@ -44,7 +43,6 @@ export function BudgetData() {
           </CardHeader>
           <CardContent className="space-y-2">
             <Table>
-              <TableCaption>Valor da proposta</TableCaption>
               <TableHeader>
                 <TableRow>
                   <TableHead colSpan={3} className="w-[100px]">
@@ -134,7 +132,7 @@ export function BudgetData() {
               <p className="font-medium">Elaborado por:</p>
               <div className="flex gap-2 py-2 px-4 border rounded-lg w-full">
                 <User />
-                <p>Usuario com nome muito merda</p>
+                <p>Usuário com nome muito merda</p>
               </div>
             </div>
             <div className="">

@@ -140,7 +140,7 @@ export function DataTable<TData, TValue>({
               <DialogHeader>
                 <DialogTitle>Cadastre um novo usuário</DialogTitle>
                 <DialogDescription>
-                  Adicione as informações necessárias do usuario e clique em
+                  Adicione as informações necessárias do usuário e clique em
                   salvar
                 </DialogDescription>
               </DialogHeader>
@@ -248,23 +248,31 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Anterior
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Próximo
-        </Button>
+      <div className="flex items-center">
+        <div className="text-sm text-muted-foreground">
+          Total de {Math.round(data.length / 10)} páginas
+        </div>
+        <div className="text-sm text-muted-foreground ml-5">
+          Total de {data.length} items
+        </div>
+        <div className="flex flex-1 items-center justify-end space-x-2 py-4">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Anterior
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Próximo
+          </Button>
+        </div>
       </div>
     </div>
   )

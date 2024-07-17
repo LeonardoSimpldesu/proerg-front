@@ -111,6 +111,10 @@ export const columns: ColumnDef<IBudget>[] = [
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Ações</DropdownMenuLabel>
+              <DialogTrigger asChild>
+                <DropdownMenuItem>Verificar Proposta</DropdownMenuItem>
+              </DialogTrigger>
+              <DropdownMenuSeparator />
               {status === 'APROVADO' ? (
                 <DropdownMenuItem className="text-primary">
                   <Check className="mr-2 h-3 w-3" />
@@ -134,23 +138,15 @@ export const columns: ColumnDef<IBudget>[] = [
               <DropdownMenuItem
                 onClick={() => navigator.clipboard.writeText(usuario.id)}
               >
-                Copiar Identificador
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(usuario.id)}
-              >
                 Baixar PDF
               </DropdownMenuItem>
-              <DialogTrigger asChild>
-                <DropdownMenuItem>Verificar Proposta</DropdownMenuItem>
-              </DialogTrigger>
             </DropdownMenuContent>
           </DropdownMenu>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Dados da proposta</DialogTitle>
               <DialogDescription>
-                Faça as alterações do usuario e clique em salvar
+                Verifique os dados da proposta
               </DialogDescription>
             </DialogHeader>
             <BudgetData />

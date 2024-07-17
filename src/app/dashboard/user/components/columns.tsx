@@ -69,7 +69,7 @@ export const columns: ColumnDef<IUser>[] = [
     header: 'Cargo',
     cell: ({ row }) => {
       const role = row.getValue('role')
-      return role === 'ADMIN' ? 'ADMIN' : 'CLIENTE'
+      return role === 'ADMIN' ? 'Administrador' : 'Cliente'
     },
   },
   {
@@ -78,14 +78,18 @@ export const columns: ColumnDef<IUser>[] = [
     cell: ({ row }) => {
       const status = row.getValue('status')
       return status === 'ACTIVE' ? (
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-sky-400" />
-          <span className="font-medium text-muted-foreground">Ativo</span>
+        <div className="flex w-20 items-center justify-center gap-2 rounded-lg bg-primary p-2">
+          <span className="h-2 w-2 rounded-full bg-white" />
+          <span className="font-medium text-muted-foreground text-white">
+            Ativo
+          </span>
         </div>
       ) : (
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-red-600" />
-          <span className="font-medium text-muted-foreground">Desativado</span>
+        <div className="flex w-20 items-center justify-center gap-2 rounded-lg bg-red-600 p-2">
+          <span className="h-2 w-2 rounded-full bg-white" />
+          <span className="font-medium text-muted-foreground text-white">
+            Inativo
+          </span>
         </div>
       )
     },
@@ -95,7 +99,6 @@ export const columns: ColumnDef<IUser>[] = [
     header: '',
     cell: ({ row }) => {
       const status = row.original.status
-      const usuario = row.original
       // console.log(row.original)
       return (
         <Dialog>
@@ -120,11 +123,6 @@ export const columns: ColumnDef<IUser>[] = [
                 </DropdownMenuItem>
               )}
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(usuario.id)}
-              >
-                Copiar Identificador
-              </DropdownMenuItem>
               <DialogTrigger asChild>
                 <DropdownMenuItem>Editar usuário</DropdownMenuItem>
               </DialogTrigger>
@@ -134,7 +132,7 @@ export const columns: ColumnDef<IUser>[] = [
             <DialogHeader>
               <DialogTitle>Atualize os dados do usuário</DialogTitle>
               <DialogDescription>
-                Faça as alterações do usuario e clique em salvar
+                Faça as alterações do usuário e clique em salvar
               </DialogDescription>
             </DialogHeader>
             <UserForm

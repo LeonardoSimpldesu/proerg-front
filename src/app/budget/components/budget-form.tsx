@@ -154,6 +154,7 @@ type BudgetFormProps = {
   handleMinusClick: () => void
   // handleResults: (values: z.infer<typeof formSchema>) => void
   handleResults: () => void
+  navigationChangePage: (page: number) => void
 }
 
 export function BudgetForm({
@@ -163,6 +164,7 @@ export function BudgetForm({
   handleMinusClick,
   handlePlusClick,
   handleResults,
+  navigationChangePage,
 }: BudgetFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -221,7 +223,7 @@ export function BudgetForm({
     return () => {
       subscription.unsubscribe()
     }
-  }, [form.watch()])
+  }, [form, handleResults])
 
   return (
     <Form {...form}>
@@ -353,7 +355,7 @@ export function BudgetForm({
                 <div className="flex gap-2">
                   <FormLabel>Quantidade de banhos com banheira:</FormLabel>
                   <FormDescription>
-                    <TooltipProvider>
+                    <TooltipProvider delayDuration={0}>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <Info size={16} color="#2563eb" strokeWidth={3} />
@@ -388,7 +390,7 @@ export function BudgetForm({
                 <div className="flex gap-2 mb-auto">
                   <FormLabel>Quantidade de banhos:</FormLabel>
                   <FormDescription>
-                    <TooltipProvider>
+                    <TooltipProvider delayDuration={0}>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <Info size={16} color="#2563eb" strokeWidth={3} />
@@ -569,7 +571,7 @@ export function BudgetForm({
                 <FormLabel className="flex gap-2">
                   Quantidade banho alteração layout:
                   <FormDescription>
-                    <TooltipProvider>
+                    <TooltipProvider delayDuration={0}>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <Info size={16} color="#2563eb" strokeWidth={3} />
@@ -604,13 +606,19 @@ export function BudgetForm({
                 <FormLabel className="flex gap-2">
                   Área total dos ambientes modificados:
                   <FormDescription>
-                    <TooltipProvider>
+                    <TooltipProvider delayDuration={0}>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <Info size={16} color="#2563eb" strokeWidth={3} />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p className="w-fit">Ver Aba de Observações</p>
+                          <button
+                            className="w-fit text-primary"
+                            onClick={() => navigationChangePage(2)}
+                            type="button"
+                          >
+                            Ver Aba de Observações
+                          </button>
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
@@ -635,13 +643,13 @@ export function BudgetForm({
                 <FormLabel className="flex gap-2">
                   Quantidade banho c/Banheira alteração layout:
                   <FormDescription>
-                    <TooltipProvider>
+                    <TooltipProvider delayDuration={0}>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <Info size={16} color="#2563eb" strokeWidth={3} />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p className="w-[40ch]">
+                          <p className="w-fit">
                             Banheiros, sendo um com banheira e outro sem
                           </p>
                         </TooltipContent>
@@ -991,13 +999,19 @@ export function BudgetForm({
                 <div className="flex gap-2">
                   <FormLabel>Haverá projeto automação:</FormLabel>
                   <FormDescription>
-                    <TooltipProvider>
+                    <TooltipProvider delayDuration={0}>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <Info size={16} color="#2563eb" strokeWidth={3} />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p className="w-fit">Ver Aba de Observações</p>
+                          <button
+                            className="w-fit text-primary"
+                            onClick={() => navigationChangePage(2)}
+                            type="button"
+                          >
+                            Ver Aba de Observações
+                          </button>
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
@@ -1031,13 +1045,19 @@ export function BudgetForm({
                 <div className="flex gap-2">
                   <FormLabel>Haverá projeto luminotécnico:</FormLabel>
                   <FormDescription>
-                    <TooltipProvider>
+                    <TooltipProvider delayDuration={0}>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <Info size={16} color="#2563eb" strokeWidth={3} />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p className="w-fit">Ver Aba de Observações</p>
+                          <button
+                            className="w-fit text-primary"
+                            onClick={() => navigationChangePage(2)}
+                            type="button"
+                          >
+                            Ver Aba de Observações
+                          </button>
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>

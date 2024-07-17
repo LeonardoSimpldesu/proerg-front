@@ -22,7 +22,7 @@ export function LightingTable() {
         <Lightbulb size={18} />
         Nível do luminotécnico
       </DialogTrigger>
-      <DialogContent className="min-w-fit max-w-[80vw]">
+      <DialogContent className="w-full md:min-w-fit">
         <DialogHeader>
           <DialogTitle>Tabela de nivéis do Luminotécnico</DialogTitle>
         </DialogHeader>

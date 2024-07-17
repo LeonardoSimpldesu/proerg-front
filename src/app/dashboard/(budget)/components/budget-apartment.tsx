@@ -239,7 +239,7 @@ export function BudgetApartment() {
             </SelectItem>
           </SelectContent>
         </Select>
-        <Table className="block max-h-[500px] overflow-y-scroll custom-scroll">
+        <Table className="block max-h-[500px] overflow-y-auto custom-scroll">
           <TableHeader className="sticky top-0 bg-white">
             <TableRow>
               <TableHead className="w-full">Questão</TableHead>

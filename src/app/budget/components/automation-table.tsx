@@ -22,7 +22,7 @@ export function AutomationTable() {
         <Settings size={18} />
         Nível de automação
       </DialogTrigger>
-      <DialogContent className="min-w-fit max-w-[80vw]">
+      <DialogContent className="w-full md:min-w-fit">
         <DialogHeader>
           <DialogTitle>Tabela de nivéis da Automação</DialogTitle>
         </DialogHeader>
