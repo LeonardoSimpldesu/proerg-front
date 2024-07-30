@@ -31,7 +31,7 @@ import { z } from 'zod'
 import { Checkbox } from '@/components/ui/checkbox'
 import { twJoin } from 'tailwind-merge'
 import { Button } from '@/components/ui/button'
-import { useEffect } from 'react'
+import { KeyboardEvent, useEffect } from 'react'
 
 export const formSchema = z.object({
   // BudgetSubjects
@@ -225,10 +225,15 @@ export function BudgetForm({
     }
   }, [form, handleResults])
 
+  const checkKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === 'Enter') e.preventDefault()
+  }
+
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit, onError)}
+        onKeyDown={(e) => checkKeyDown(e)}
         className="flex flex-1 flex-col justify-between space-y-4"
       >
         <div
