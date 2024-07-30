@@ -1,9 +1,14 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Building } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
+  const router = useRouter()
+
   return (
     <main className="grid min-h-screen grid-cols-2 justify-center items-center">
       <div className="hidden lg:flex h-full flex-col justify-between border-r border-foreground/5 bg-primary p-10 text-white">
@@ -32,7 +37,8 @@ export default function Login() {
                 <Input id="email" type="email" />
               </div>
               <Button
-                type="submit"
+                type="button"
+                onClick={() => router.push('/dashboard')}
                 variant="default"
                 className="w-full bg-primary"
               >
