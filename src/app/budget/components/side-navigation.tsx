@@ -60,8 +60,8 @@ export function SideNavigation({
               : pageCurrent === 4
                 ? 'bg-primary text-white'
                 : errors.originalProject
-                  ? 'text-red-500'
-                  : '',
+                  ? 'text-red-500 hover:underline'
+                  : 'hover:underline',
           )}
           onClick={() => navigationChangePage(4)}
         >
@@ -75,8 +75,8 @@ export function SideNavigation({
               : pageCurrent === 5
                 ? 'bg-primary text-white'
                 : errors.modifications
-                  ? 'text-red-500'
-                  : '',
+                  ? 'text-red-500 hover:underline'
+                  : 'hover:underline',
           )}
           onClick={() => navigationChangePage(5)}
         >
@@ -90,8 +90,8 @@ export function SideNavigation({
               : pageCurrent === 6
                 ? 'bg-primary text-white'
                 : errors.newAreas
-                  ? 'text-red-500'
-                  : '',
+                  ? 'text-red-500 hover:underline'
+                  : 'hover:underline',
           )}
           onClick={() => navigationChangePage(6)}
         >
@@ -105,8 +105,8 @@ export function SideNavigation({
               : pageCurrent === 7
                 ? 'bg-primary text-white'
                 : errors.management
-                  ? 'text-red-500'
-                  : '',
+                  ? 'text-red-500 hover:underline'
+                  : 'hover:underline',
           )}
           onClick={() => navigationChangePage(7)}
         >
@@ -120,8 +120,8 @@ export function SideNavigation({
               : pageCurrent === 8
                 ? 'bg-primary text-white'
                 : errors.hydrosanitaryInstallation
-                  ? 'text-red-500'
-                  : '',
+                  ? 'text-red-500 hover:underline'
+                  : 'hover:underline',
           )}
           onClick={() => navigationChangePage(8)}
         >

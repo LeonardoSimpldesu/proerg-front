@@ -127,6 +127,7 @@ export default function BudgetPage() {
         <HamburguerNavigation
           pageCurrent={currentPage}
           navigationChangePage={navigationChangePage}
+          errors={errosList}
         />
       </div>
       <div className="mb-8 border-b border-slate-600 px-6 py-6">

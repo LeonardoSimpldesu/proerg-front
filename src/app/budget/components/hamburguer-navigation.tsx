@@ -11,13 +11,23 @@ import {
 } from '@/components/ui/drawer'
 import { Building, Menu, NotepadText, ShieldAlert, X } from 'lucide-react'
 
-export function HamburguerNavigation({
-  pageCurrent,
-  navigationChangePage,
-}: {
+type HamburguerNavigationProps = {
+  errors: {
+    originalProject: boolean
+    modifications: boolean
+    newAreas: boolean
+    management: boolean
+    hydrosanitaryInstallation: boolean
+  }
   pageCurrent: number
   navigationChangePage: (page: number) => void
-}) {
+}
+
+export function HamburguerNavigation({
+  pageCurrent,
+  errors,
+  navigationChangePage,
+}: HamburguerNavigationProps) {
   return (
     <Drawer direction="right">
       <DrawerTrigger className="lg:hidden">
@@ -29,7 +39,7 @@ export function HamburguerNavigation({
             <Building /> PROERG
           </DrawerTitle>
           <DrawerClose asChild>
-            <X />
+            <X className="cursor-pointer" />
           </DrawerClose>
         </DrawerHeader>
         <nav className=" ">
@@ -69,7 +79,13 @@ export function HamburguerNavigation({
             <li
               className={twJoin(
                 'flex gap-2 cursor-pointer rounded-md px-4 py-2 font-medium',
-                pageCurrent === 4 ? 'bg-primary text-white' : 'hover:underline',
+                errors.originalProject && pageCurrent === 4
+                  ? 'bg-red-500 text-white'
+                  : pageCurrent === 4
+                    ? 'bg-primary text-white'
+                    : errors.originalProject
+                      ? 'text-red-500 hover:underline'
+                      : 'hover:underline',
               )}
               onClick={() => navigationChangePage(4)}
             >
@@ -78,7 +94,13 @@ export function HamburguerNavigation({
             <li
               className={twJoin(
                 'flex gap-2 cursor-pointer rounded-md px-4 py-2 font-medium',
-                pageCurrent === 5 ? 'bg-primary text-white' : 'hover:underline',
+                errors.modifications && pageCurrent === 5
+                  ? 'bg-red-500 text-white'
+                  : pageCurrent === 5
+                    ? 'bg-primary text-white'
+                    : errors.modifications
+                      ? 'text-red-500 hover:underline'
+                      : 'hover:underline',
               )}
               onClick={() => navigationChangePage(5)}
             >
@@ -87,7 +109,13 @@ export function HamburguerNavigation({
             <li
               className={twJoin(
                 'flex gap-2 cursor-pointer rounded-md px-4 py-2 font-medium',
-                pageCurrent === 6 ? 'bg-primary text-white' : 'hover:underline',
+                errors.newAreas && pageCurrent === 6
+                  ? 'bg-red-500 text-white'
+                  : pageCurrent === 6
+                    ? 'bg-primary text-white'
+                    : errors.newAreas
+                      ? 'text-red-500 hover:underline'
+                      : 'hover:underline',
               )}
               onClick={() => navigationChangePage(6)}
             >
@@ -96,7 +124,13 @@ export function HamburguerNavigation({
             <li
               className={twJoin(
                 'flex gap-2 cursor-pointer rounded-md px-4 py-2 font-medium',
-                pageCurrent === 7 ? 'bg-primary text-white' : 'hover:underline',
+                errors.management && pageCurrent === 7
+                  ? 'bg-red-500 text-white'
+                  : pageCurrent === 7
+                    ? 'bg-primary text-white'
+                    : errors.management
+                      ? 'text-red-500 hover:underline'
+                      : 'hover:underline',
               )}
               onClick={() => navigationChangePage(7)}
             >
@@ -105,7 +139,13 @@ export function HamburguerNavigation({
             <li
               className={twJoin(
                 'flex gap-2 cursor-pointer rounded-md px-4 py-2 font-medium',
-                pageCurrent === 8 ? 'bg-primary text-white' : 'hover:underline',
+                errors.hydrosanitaryInstallation && pageCurrent === 8
+                  ? 'bg-red-500 text-white'
+                  : pageCurrent === 8
+                    ? 'bg-primary text-white'
+                    : errors.hydrosanitaryInstallation
+                      ? 'text-red-500 hover:underline'
+                      : 'hover:underline',
               )}
               onClick={() => navigationChangePage(8)}
             >
