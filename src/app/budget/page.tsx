@@ -42,6 +42,7 @@ import { verifyFieldsErrors } from '@/lib/verifyFieldsErrors'
 
 export default function BudgetPage() {
   const [currentPage, setCurrentPage] = useState(1)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [total, setTotal] = useState(0)
   const [errorDialog, setErrorDialog] = useState(false)
   const [errosList, setErrosList] = useState({
