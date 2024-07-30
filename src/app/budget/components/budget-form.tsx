@@ -42,28 +42,28 @@ export const formSchema = z.object({
 
   // BudgetOriginalProject
   areaTotalApartamento: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeDeLavabos: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeDeBanhoComBanheira: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeBanho: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeCozinha: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quandidadeAreaServico: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeAreaGourmet: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeDeSpa: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
 
   // BudgetModifications
@@ -71,56 +71,56 @@ export const formSchema = z.object({
   duplex: z.boolean().default(false),
   projetoOriginalRVT: z.boolean().default(false),
   areaTotalDosAmbientesModificados: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeLavabosAlteracao: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeBanhoComBanheiraAlteracao: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeBanhoAlteracao: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeCozinhaAlteracao: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeAreaServicoAlteracao: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeAreaGoumertAlteracao: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeSpaMudancaPosicao: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
 
   // BudgetNewAreas
   quantidadeNovosLavabos: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeNovosBanhos: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeNovosQuartos: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeNovosSpa: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   qunantidadeNovasAreasComHidraulica: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
 
   // BudgetManagement
   atualizacaoArquiteturaDuranteExecucao: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeReunioesNecessarias: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   quantidadeAnalisesCliente: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   detalhamentoDasAreasMolhadas: z.boolean().default(false),
   projetoMarcenariaDaCozinha: z.boolean().default(false),
@@ -141,7 +141,7 @@ export const formSchema = z.object({
   alteracaoProjetoArCondicionado: z.boolean().default(false),
   loucasEquipamentosComVazoesDiferentesDaNorma: z.boolean().default(false),
   quantidadeBanhosQueMudaramSomentePosicaoDoLavatorio: z.coerce
-    .number({ message: 'Coloque apenas números' })
+    .number({ message: 'Insira um número' })
     .nonnegative({ message: 'Insira um valor positivo' }),
   indicacaoDeTodasAsPecasDeEsgoto: z.boolean().default(false),
 })
@@ -170,9 +170,9 @@ export function BudgetForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       alteracaoProjetoArCondicionado: false,
-      areaTotalApartamento: 0,
-      areaTotalDosAmbientesModificados: 0,
-      atualizacaoArquiteturaDuranteExecucao: 0,
+      areaTotalApartamento: undefined,
+      areaTotalDosAmbientesModificados: undefined,
+      atualizacaoArquiteturaDuranteExecucao: undefined,
       detalhamentoDasAreasMolhadas: false,
       duplex: false,
       indicacaoDeTodasAsPecasDeEsgoto: false,
@@ -189,28 +189,28 @@ export function BudgetForm({
       projetoMarcenariaDaCozinha: false,
       projetoOriginalRVT: false,
       projetoTelecom: false,
-      quandidadeAreaServico: 0,
-      quantidadeAnalisesCliente: 0,
-      quantidadeAreaGoumertAlteracao: 0,
-      quantidadeAreaGourmet: 0,
-      quantidadeAreaServicoAlteracao: 0,
-      quantidadeBanho: 0,
-      quantidadeBanhoAlteracao: 0,
-      quantidadeBanhoComBanheiraAlteracao: 0,
-      quantidadeBanhosQueMudaramSomentePosicaoDoLavatorio: 0,
-      quantidadeCozinha: 0,
-      quantidadeCozinhaAlteracao: 0,
-      quantidadeDeBanhoComBanheira: 0,
-      quantidadeDeLavabos: 0,
-      quantidadeDeSpa: 0,
-      quantidadeLavabosAlteracao: 0,
-      quantidadeNovosBanhos: 0,
-      quantidadeNovosLavabos: 0,
-      quantidadeNovosQuartos: 0,
-      quantidadeNovosSpa: 0,
-      quantidadeReunioesNecessarias: 0,
-      quantidadeSpaMudancaPosicao: 0,
-      qunantidadeNovasAreasComHidraulica: 0,
+      quandidadeAreaServico: undefined,
+      quantidadeAnalisesCliente: undefined,
+      quantidadeAreaGoumertAlteracao: undefined,
+      quantidadeAreaGourmet: undefined,
+      quantidadeAreaServicoAlteracao: undefined,
+      quantidadeBanho: undefined,
+      quantidadeBanhoAlteracao: undefined,
+      quantidadeBanhoComBanheiraAlteracao: undefined,
+      quantidadeBanhosQueMudaramSomentePosicaoDoLavatorio: undefined,
+      quantidadeCozinha: undefined,
+      quantidadeCozinhaAlteracao: undefined,
+      quantidadeDeBanhoComBanheira: undefined,
+      quantidadeDeLavabos: undefined,
+      quantidadeDeSpa: undefined,
+      quantidadeLavabosAlteracao: undefined,
+      quantidadeNovosBanhos: undefined,
+      quantidadeNovosLavabos: undefined,
+      quantidadeNovosQuartos: undefined,
+      quantidadeNovosSpa: undefined,
+      quantidadeReunioesNecessarias: undefined,
+      quantidadeSpaMudancaPosicao: undefined,
+      qunantidadeNovasAreasComHidraulica: undefined,
       transicaoDeInstalacoesHidraulicas: false,
     },
   })
@@ -1217,7 +1217,10 @@ export function BudgetForm({
           >
             Próximo
           </Button>
-          <Button type="submit" className="text-white">
+          <Button
+            type="submit"
+            className={currentPage === 8 ? 'text-white' : 'hidden'}
+          >
             Enviar
           </Button>
         </div>

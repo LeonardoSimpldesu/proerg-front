@@ -2,13 +2,23 @@ import { twJoin } from 'tailwind-merge'
 
 import { Separator } from '@/components/ui/separator'
 
-export function SideNavigation({
-  pageCurrent,
-  navigationChangePage,
-}: {
+type SideNavigationProps = {
+  errors: {
+    originalProject: boolean
+    modifications: boolean
+    newAreas: boolean
+    management: boolean
+    hydrosanitaryInstallation: boolean
+  }
   pageCurrent: number
   navigationChangePage: (page: number) => void
-}) {
+}
+
+export function SideNavigation({
+  pageCurrent,
+  errors,
+  navigationChangePage,
+}: SideNavigationProps) {
   return (
     <nav className=" ">
       <ul className="">
@@ -45,7 +55,13 @@ export function SideNavigation({
         <li
           className={twJoin(
             'cursor-pointer rounded-md px-6 py-4 font-medium',
-            pageCurrent === 4 ? 'bg-primary text-white' : 'hover:underline',
+            errors.originalProject && pageCurrent === 4
+              ? 'bg-red-500 text-white'
+              : pageCurrent === 4
+                ? 'bg-primary text-white'
+                : errors.originalProject
+                  ? 'text-red-500'
+                  : '',
           )}
           onClick={() => navigationChangePage(4)}
         >
@@ -54,7 +70,13 @@ export function SideNavigation({
         <li
           className={twJoin(
             'cursor-pointer rounded-md px-6 py-4 font-medium',
-            pageCurrent === 5 ? 'bg-primary text-white' : 'hover:underline',
+            errors.modifications && pageCurrent === 5
+              ? 'bg-red-500 text-white'
+              : pageCurrent === 5
+                ? 'bg-primary text-white'
+                : errors.modifications
+                  ? 'text-red-500'
+                  : '',
           )}
           onClick={() => navigationChangePage(5)}
         >
@@ -63,7 +85,13 @@ export function SideNavigation({
         <li
           className={twJoin(
             'cursor-pointer rounded-md px-6 py-4 font-medium',
-            pageCurrent === 6 ? 'bg-primary text-white' : 'hover:underline',
+            errors.newAreas && pageCurrent === 6
+              ? 'bg-red-500 text-white'
+              : pageCurrent === 6
+                ? 'bg-primary text-white'
+                : errors.newAreas
+                  ? 'text-red-500'
+                  : '',
           )}
           onClick={() => navigationChangePage(6)}
         >
@@ -72,7 +100,13 @@ export function SideNavigation({
         <li
           className={twJoin(
             'cursor-pointer rounded-md px-6 py-4 font-medium',
-            pageCurrent === 7 ? 'bg-primary text-white' : 'hover:underline',
+            errors.management && pageCurrent === 7
+              ? 'bg-red-500 text-white'
+              : pageCurrent === 7
+                ? 'bg-primary text-white'
+                : errors.management
+                  ? 'text-red-500'
+                  : '',
           )}
           onClick={() => navigationChangePage(7)}
         >
@@ -81,7 +115,13 @@ export function SideNavigation({
         <li
           className={twJoin(
             'cursor-pointer rounded-md px-6 py-4 font-medium',
-            pageCurrent === 8 ? 'bg-primary text-white' : 'hover:underline',
+            errors.hydrosanitaryInstallation && pageCurrent === 8
+              ? 'bg-red-500 text-white'
+              : pageCurrent === 8
+                ? 'bg-primary text-white'
+                : errors.hydrosanitaryInstallation
+                  ? 'text-red-500'
+                  : '',
           )}
           onClick={() => navigationChangePage(8)}
         >

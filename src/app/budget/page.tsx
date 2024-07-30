@@ -38,9 +38,19 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { useRouter } from 'next/navigation'
+import { verifyFieldsErrors } from '@/lib/verifyFieldsErrors'
 
 export default function BudgetPage() {
   const [currentPage, setCurrentPage] = useState(1)
+  const [total, setTotal] = useState(0)
+  const [errorDialog, setErrorDialog] = useState(false)
+  const [errosList, setErrosList] = useState({
+    originalProject: false,
+    modifications: false,
+    newAreas: false,
+    management: false,
+    hydrosanitaryInstallation: false,
+  })
   const electricalProject = useRef(0)
   const hydrosanitary = useRef(0)
   const materialList = useRef(0)
@@ -70,8 +80,10 @@ export default function BudgetPage() {
 
   function onError(values: FieldErrors) {
     toast.error('Preencha todos os campos.')
-
+    setErrorDialog(true)
     console.log(values)
+
+    setErrosList(verifyFieldsErrors(values))
   }
 
   // values: z.infer<typeof formSchema>
@@ -80,6 +92,12 @@ export default function BudgetPage() {
     hydrosanitary.current = Math.floor(Math.random() * 6) + 1
     materialList.current = Math.floor(Math.random() * 6) + 1
     telecomProject.current = Math.floor(Math.random() * 6) + 1
+    setTotal(
+      electricalProject.current +
+        hydrosanitary.current +
+        materialList.current +
+        telecomProject.current,
+    )
   }
 
   return (
@@ -121,6 +139,7 @@ export default function BudgetPage() {
           <SideNavigation
             pageCurrent={currentPage}
             navigationChangePage={navigationChangePage}
+            errors={errosList}
           />
         </div>
         <div className="col-span-6 xl:col-span-6 2xl:col-span-7 h-full justify-between">
@@ -248,6 +267,27 @@ export default function BudgetPage() {
           </div>
         </div>
       </div>
+      <AlertDialog open={errorDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Campos incorretos!</AlertDialogTitle>
+            <AlertDialogDescription>
+              Preencha todos os campos e verifique se seus valores estão
+              corretos antes de enviar novamente
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction
+              onClick={() => {
+                setErrorDialog(false)
+              }}
+              className="bg-red-500 text-white"
+            >
+              Continuar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }
