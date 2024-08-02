@@ -190,7 +190,7 @@ const budgets: IBudget[] = [
 
 export default function Budgets() {
   return (
-    <div className="px-16 py-8">
+    <div className="px-16 py-2">
       <DataTable columns={columns} data={budgets} route="BUDGETS" />
     </div>
   )

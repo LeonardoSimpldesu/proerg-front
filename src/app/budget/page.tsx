@@ -45,6 +45,7 @@ export default function BudgetPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [total, setTotal] = useState(0)
   const [errorDialog, setErrorDialog] = useState(false)
+  const [confirmDialog, setConfirmDialog] = useState(false)
   const [errosList, setErrosList] = useState({
     originalProject: false,
     modifications: false,
@@ -76,6 +77,7 @@ export default function BudgetPage() {
   }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    setConfirmDialog(true)
     console.log(values)
   }
 
@@ -269,6 +271,41 @@ export default function BudgetPage() {
           </div>
         </div>
       </div>
+      <AlertDialog open={confirmDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirmar orçamento?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Verifique os valores antes de confirmar o orçamento
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <BudgetResults
+            electricalProject={electricalProject.current}
+            hydrosanitary={hydrosanitary.current}
+            materialList={materialList.current}
+            telecomProject={telecomProject.current}
+          />
+          <AlertDialogFooter>
+            <AlertDialogCancel
+              onClick={() => {
+                setConfirmDialog(false)
+              }}
+            >
+              Cancelar
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                setConfirmDialog(false)
+                toast.success('Orçamento criado com sucesso.')
+                router.push('/dashboard')
+              }}
+              className=""
+            >
+              Continuar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
       <AlertDialog open={errorDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>

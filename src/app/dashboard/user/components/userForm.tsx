@@ -9,6 +9,7 @@ import {
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -21,6 +22,16 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { cn } from '@/lib/utils'
+import { CalendarIcon } from 'lucide-react'
+import { Calendar } from '@/components/ui/calendar'
+import { format } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 
 const formSchema = z.object({
   userName: z.string().min(2, {
@@ -30,6 +41,11 @@ const formSchema = z.object({
   role: z.enum(['CLIENT', 'ADMIN'], {
     message: 'O usuário precisa ser um admin ou um cliente',
   }),
+  expirerDate: z.optional(
+    z
+      .date()
+      .min(new Date(), { message: 'A data de exipiração deve ser no futuro' }),
+  ),
 })
 
 type IUserForm = {
@@ -107,6 +123,49 @@ export function UserForm({
                     <SelectItem value="ADMIN">Administrador</SelectItem>
                   </SelectContent>
                 </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="expirerDate"
+            render={({ field }) => (
+              <FormItem className="flex flex-col">
+                <FormLabel>Expirar usuário em:</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant={'outline'}
+                        className={cn(
+                          'pl-3 text-left font-normal',
+                          !field.value && 'text-muted-foreground',
+                        )}
+                      >
+                        {field.value ? (
+                          format(field.value, 'PPP', { locale: ptBR })
+                        ) : (
+                          <span>Selecione uma data</span>
+                        )}
+                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={field.value}
+                      onSelect={field.onChange}
+                      disabled={(date) => date < new Date()}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+                <FormDescription>
+                  A data em que o usuário não poderá mais se conectar a
+                  plataforma.
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
