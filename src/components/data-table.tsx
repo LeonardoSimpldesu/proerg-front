@@ -75,128 +75,143 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="">
-      {route === 'USERS' ? (
-        <div className="flex items-center gap-6 py-4 flex-col w-full lg:flex-row">
-          <Input
-            placeholder="Filtre por nome..."
-            value={
-              (table.getColumn('userName')?.getFilterValue() as string) ?? ''
-            }
-            onChange={(event) =>
-              table.getColumn('userName')?.setFilterValue(event.target.value)
-            }
-            className="w-full lg:max-w-xs"
-          />
-          <Input
-            placeholder="Filtre por email..."
-            value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
-            onChange={(event) =>
-              table.getColumn('email')?.setFilterValue(event.target.value)
-            }
-            className="w-full lg:max-w-xs"
-          />
-          <Select
-            onValueChange={(event) =>
-              event === ' '
-                ? table.getColumn('role')?.setFilterValue('')
-                : table.getColumn('role')?.setFilterValue(event)
-            }
-          >
-            <SelectTrigger className="w-full lg:max-w-xs">
-              <SelectValue placeholder="Cargo" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value=" ">Todos</SelectItem>
-              <SelectItem value="CLIENT">Cliente</SelectItem>
-              <SelectItem value="ADMIN">Administrador</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select
-            onValueChange={(event) =>
-              event === ' '
-                ? table.getColumn('status')?.setFilterValue('')
-                : table.getColumn('status')?.setFilterValue(event)
-            }
-          >
-            <SelectTrigger className="w-full lg:max-w-xs">
-              <SelectValue placeholder="Status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value=" ">Todos</SelectItem>
-              <SelectItem value="ACTIVE">Ativo</SelectItem>
-              <SelectItem value="DEACTIVATE">Desativado</SelectItem>
-            </SelectContent>
-          </Select>
+    <div>
+      <div className="flex items-center gap-6 py-4 flex-col w-full lg:flex-row">
+        {route === 'USERS' ? (
+          <>
+            <Input
+              placeholder="Filtre por nome..."
+              value={
+                (table.getColumn('userName')?.getFilterValue() as string) ?? ''
+              }
+              onChange={(event) =>
+                table.getColumn('userName')?.setFilterValue(event.target.value)
+              }
+              className="w-full lg:max-w-xs"
+            />
+            <Input
+              placeholder="Filtre por email..."
+              value={
+                (table.getColumn('email')?.getFilterValue() as string) ?? ''
+              }
+              onChange={(event) =>
+                table.getColumn('email')?.setFilterValue(event.target.value)
+              }
+              className="w-full lg:max-w-xs"
+            />
+            <Select
+              value={
+                (table.getColumn('role')?.getFilterValue() as string) ?? ''
+              }
+              onValueChange={(value) =>
+                table.getColumn('role')?.setFilterValue(value)
+              }
+            >
+              <SelectTrigger className="w-full lg:max-w-xs">
+                <SelectValue placeholder="Cargo" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value=" ">Todos</SelectItem>
+                <SelectItem value="CLIENT">Cliente</SelectItem>
+                <SelectItem value="ADMIN">Administrador</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select
+              value={
+                (table.getColumn('status')?.getFilterValue() as string) ?? ''
+              }
+              onValueChange={(value) =>
+                table.getColumn('status')?.setFilterValue(value)
+              }
+            >
+              <SelectTrigger className="w-full lg:max-w-xs">
+                <SelectValue placeholder="Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value=" ">Todos</SelectItem>
+                <SelectItem value="ACTIVE">Ativo</SelectItem>
+                <SelectItem value="DEACTIVATE">Desativado</SelectItem>
+              </SelectContent>
+            </Select>
 
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button className="ml-auto gap-2 w-fit">
-                <Plus size={18} />
-                Novo Usuário
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Cadastre um novo usuário</DialogTitle>
-                <DialogDescription>
-                  Adicione as informações necessárias do usuário e clique em
-                  salvar
-                </DialogDescription>
-              </DialogHeader>
-              <UserForm />
-            </DialogContent>
-          </Dialog>
-        </div>
-      ) : (
-        <div className="flex items-center gap-6 py-4 flex-col w-full lg:flex-row">
-          <Input
-            placeholder="Filtre por nome..."
-            value={
-              (table.getColumn('budgetName')?.getFilterValue() as string) ?? ''
-            }
-            onChange={(event) =>
-              table.getColumn('budgetName')?.setFilterValue(event.target.value)
-            }
-            className="w-full lg:max-w-xs"
-          />
-          <Input
-            placeholder="Filtre por cliente..."
-            value={
-              (table.getColumn('client')?.getFilterValue() as string) ?? ''
-            }
-            onChange={(event) =>
-              table.getColumn('client')?.setFilterValue(event.target.value)
-            }
-            className="w-full lg:max-w-xs"
-          />
-          <Select
-            onValueChange={(event) =>
-              event === ' '
-                ? table.getColumn('status')?.setFilterValue('')
-                : table.getColumn('status')?.setFilterValue(event)
-            }
-          >
-            <SelectTrigger className="w-full lg:max-w-xs">
-              <SelectValue placeholder="Status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value=" ">Todos os status</SelectItem>
-              <SelectItem value="APROVADO">Aprovado</SelectItem>
-              <SelectItem value="RECUSADO">Recusado</SelectItem>
-              <SelectItem value="PENDENTE">Pendente</SelectItem>
-              <SelectItem value="CONCLUIDO">Concluido</SelectItem>
-            </SelectContent>
-          </Select>
+            <Button variant={'ghost'} onClick={() => setColumnFilters([])}>
+              Remover filtros
+            </Button>
 
-          <Button className="ml-auto gap-2 w-full xl:w-fit" asChild>
-            <Link href={'/budget'}>
-              <File size={18} />
-              Nova Proposta
-            </Link>
-          </Button>
-        </div>
-      )}
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button className="ml-auto gap-2 w-fit">
+                  <Plus size={18} />
+                  Novo Usuário
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Cadastre um novo usuário</DialogTitle>
+                  <DialogDescription>
+                    Adicione as informações necessárias do usuário e clique em
+                    salvar
+                  </DialogDescription>
+                </DialogHeader>
+                <UserForm />
+              </DialogContent>
+            </Dialog>
+          </>
+        ) : (
+          <>
+            <Input
+              placeholder="Filtre por nome..."
+              value={
+                (table.getColumn('budgetName')?.getFilterValue() as string) ??
+                ''
+              }
+              onChange={(event) =>
+                table
+                  .getColumn('budgetName')
+                  ?.setFilterValue(event.target.value)
+              }
+              className="w-full lg:max-w-xs"
+            />
+            <Input
+              placeholder="Filtre por cliente..."
+              value={
+                (table.getColumn('client')?.getFilterValue() as string) ?? ''
+              }
+              onChange={(event) =>
+                table.getColumn('client')?.setFilterValue(event.target.value)
+              }
+              className="w-full lg:max-w-xs"
+            />
+            <Select
+              value={
+                (table.getColumn('status')?.getFilterValue() as string) ?? ''
+              }
+              onValueChange={(value) =>
+                table.getColumn('status')?.setFilterValue(value)
+              }
+            >
+              <SelectTrigger className="w-full lg:max-w-xs">
+                <SelectValue placeholder="Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value=" ">Todos os status</SelectItem>
+                <SelectItem value="APROVADO">Aprovado</SelectItem>
+                <SelectItem value="RECUSADO">Recusado</SelectItem>
+                <SelectItem value="PENDENTE">Pendente</SelectItem>
+                <SelectItem value="CONCLUIDO">Concluido</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button variant={'ghost'}>Remover filtros</Button>
+
+            <Button className="ml-auto gap-2 w-full xl:w-fit" asChild>
+              <Link href={'/budget'}>
+                <File size={18} />
+                Nova Proposta
+              </Link>
+            </Button>
+          </>
+        )}
+      </div>
 
       <div className="rounded-md border">
         <Table>

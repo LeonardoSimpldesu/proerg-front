@@ -41,11 +41,11 @@ const formSchema = z.object({
   role: z.enum(['CLIENT', 'ADMIN'], {
     message: 'O usuário precisa ser um admin ou um cliente',
   }),
-  expirerDate: z.optional(
-    z
-      .date()
-      .min(new Date(), { message: 'A data de exipiração deve ser no futuro' }),
-  ),
+  expirerDate: z
+    .date()
+    .min(new Date(), { message: 'A data de exipiração deve ser no futuro' })
+    .nullable()
+    .optional(),
 })
 
 type IUserForm = {
@@ -65,6 +65,7 @@ export function UserForm({
       userName,
       email,
       role,
+      expirerDate: null,
     },
   })
 
@@ -155,16 +156,17 @@ export function UserForm({
                   <PopoverContent className="w-auto p-0" align="start">
                     <Calendar
                       mode="single"
-                      selected={field.value}
+                      selected={field.value ?? undefined}
                       onSelect={field.onChange}
-                      disabled={(date) => date < new Date()}
+                      disabled={(date) =>
+                        date < new Date('1900-01-01') || date < new Date()
+                      }
                       initialFocus
                     />
                   </PopoverContent>
                 </Popover>
                 <FormDescription>
-                  A data em que o usuário não poderá mais se conectar a
-                  plataforma.
+                  Em caso de acesso indeterminado, deixe este campo em branco.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

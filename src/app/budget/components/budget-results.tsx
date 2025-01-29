@@ -7,19 +7,19 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-type BudgetResultsProps = {
+export type TBudgetResults = {
   electricalProject: number
   telecomProject: number
   hydrosanitary: number
   materialList: number
+  total: number
 }
 
-export function BudgetResults({
-  electricalProject,
-  hydrosanitary,
-  materialList,
-  telecomProject,
-}: BudgetResultsProps) {
+type BudgetResultsProps = {
+  data: TBudgetResults
+}
+
+export function BudgetResults({ data }: BudgetResultsProps) {
   return (
     <div className="overflow-hidden rounded-b-lg rounded-t-md">
       <Table className="w-full border">
@@ -34,7 +34,7 @@ export function BudgetResults({
           <TableRow>
             <TableHead className="">Projeto elétrico</TableHead>
             <TableCell className=" text-right">
-              {electricalProject.toLocaleString('pt-br', {
+              {data.electricalProject.toLocaleString('pt-br', {
                 style: 'currency',
                 currency: 'BRL',
               })}
@@ -43,7 +43,7 @@ export function BudgetResults({
           <TableRow>
             <TableHead>Projeto telecom</TableHead>
             <TableCell className=" text-right">
-              {telecomProject.toLocaleString('pt-br', {
+              {data.telecomProject.toLocaleString('pt-br', {
                 style: 'currency',
                 currency: 'BRL',
               })}
@@ -52,7 +52,7 @@ export function BudgetResults({
           <TableRow>
             <TableHead>Hidrossanitário</TableHead>
             <TableCell className=" text-right">
-              {hydrosanitary.toLocaleString('pt-br', {
+              {data.hydrosanitary.toLocaleString('pt-br', {
                 style: 'currency',
                 currency: 'BRL',
               })}
@@ -61,7 +61,7 @@ export function BudgetResults({
           <TableRow>
             <TableHead>Lista de material</TableHead>
             <TableCell className=" text-right">
-              {materialList.toLocaleString('pt-br', {
+              {data.materialList.toLocaleString('pt-br', {
                 style: 'currency',
                 currency: 'BRL',
               })}
@@ -70,12 +70,7 @@ export function BudgetResults({
           <TableRow className="border border-primary bg-primary text-white hover:bg-primary">
             <TableHead className="h-10 text-white">Total:</TableHead>
             <TableCell className="py-0 text-right">
-              {(
-                hydrosanitary +
-                telecomProject +
-                materialList +
-                electricalProject
-              ).toLocaleString('pt-br', {
+              {data.total.toLocaleString('pt-br', {
                 style: 'currency',
                 currency: 'BRL',
               })}

@@ -101,18 +101,20 @@ export const columns: ColumnDef<IBudget>[] = [
       const status = row.original.status
       const usuario = row.original
       return (
-        <Dialog>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Ações</DropdownMenuLabel>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Ações</DropdownMenuLabel>
+            <Dialog>
               <DialogTrigger asChild>
-                <DropdownMenuItem>Verificar Proposta</DropdownMenuItem>
+                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                  Verificar Proposta
+                </DropdownMenuItem>
               </DialogTrigger>
               <DropdownMenuSeparator />
               {status === 'APROVADO' ? (
@@ -140,18 +142,18 @@ export const columns: ColumnDef<IBudget>[] = [
               >
                 Baixar PDF
               </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Dados da proposta</DialogTitle>
-              <DialogDescription>
-                Verifique os dados da proposta
-              </DialogDescription>
-            </DialogHeader>
-            <BudgetData />
-          </DialogContent>
-        </Dialog>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Dados da proposta</DialogTitle>
+                  <DialogDescription>
+                    Verifique os dados da proposta
+                  </DialogDescription>
+                </DialogHeader>
+                <BudgetData />
+              </DialogContent>
+            </Dialog>
+          </DropdownMenuContent>
+        </DropdownMenu>
       )
     },
   },
