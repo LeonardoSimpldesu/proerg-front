@@ -23,6 +23,7 @@ import {
   DropdownMenu,
 } from '@/components/ui/dropdown-menu'
 import { BudgetData } from './budget-data'
+import { toast } from 'sonner'
 export const columns: ColumnDef<IBudget>[] = [
   {
     accessorKey: 'id',
@@ -118,17 +119,32 @@ export const columns: ColumnDef<IBudget>[] = [
               </DialogTrigger>
               <DropdownMenuSeparator />
               {status === 'APROVADO' ? (
-                <DropdownMenuItem className="text-primary">
+                <DropdownMenuItem
+                  className="text-primary"
+                  onClick={() =>
+                    toast.success(`Proposta ${usuario.id} Concluída`)
+                  }
+                >
                   <Check className="mr-2 h-3 w-3" />
                   Concluir Proposta
                 </DropdownMenuItem>
               ) : status === 'PENDENTE' ? (
                 <>
-                  <DropdownMenuItem className="text-primary">
+                  <DropdownMenuItem
+                    className="text-primary"
+                    onClick={() =>
+                      toast.success(`Proposta ${usuario.id} Aceita`)
+                    }
+                  >
                     <Check className="mr-2 h-3 w-3" />
                     Aceitar Proposta
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="text-destructive">
+                  <DropdownMenuItem
+                    className="text-destructive"
+                    onClick={() =>
+                      toast.success(`Proposta ${usuario.id} Recusada`)
+                    }
+                  >
                     <X className="mr-2 h-3 w-3" />
                     Recusar Proposta
                   </DropdownMenuItem>
@@ -138,7 +154,10 @@ export const columns: ColumnDef<IBudget>[] = [
               )}
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(usuario.id)}
+                onClick={() => {
+                  navigator.clipboard.writeText(usuario.id)
+                  toast.success(`Baixou PDF do documento ${usuario.id}`)
+                }}
               >
                 Baixar PDF
               </DropdownMenuItem>

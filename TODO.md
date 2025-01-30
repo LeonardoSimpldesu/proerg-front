@@ -3,10 +3,10 @@
 - [X] Ao finalizar, mostrar uma opção de baixar PDF do documento.
 
 # DASHBOARD
-- [ ] Ao verificar dados de uma proposta, criar botão para exportar esta proposta como PDF ou Excel
+- [X ] Ao verificar dados de uma proposta, criar botão para exportar esta proposta como PDF ou Excel
 - [X] BUG: Ao clicar em verificar proposta e clicar fora do modal, nenhum outro botão na página funciona
 - [ ] Ao utilizar qualquer ação nas propostas, abrir um modal de confirmação e perguntar se será enviado um email para o cliente, além de poder adicionar mais destinatários.
-- [ ] Adicionar toster para as ações, exemplo: "Baixou PDF do documento ###", "Proposta ### aceita".
+- [X] Adicionar toster para as ações, exemplo: "Baixou PDF do documento ###", "Proposta ### aceita".
 - [X] Adicionar botão para limpar filtros
 
 # USER
