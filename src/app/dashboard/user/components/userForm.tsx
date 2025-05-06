@@ -52,12 +52,14 @@ type IUserForm = {
   userName?: string
   email?: string
   role?: 'CLIENT' | 'ADMIN'
+  onCloseDialog: () => void
 }
 
 export function UserForm({
   userName = '',
   role = 'CLIENT',
   email = '',
+  onCloseDialog,
 }: IUserForm) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -70,6 +72,7 @@ export function UserForm({
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    onCloseDialog()
     toast.success('Usuário criado com sucesso')
     console.log(values)
   }
@@ -153,7 +156,13 @@ export function UserForm({
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
+                  <PopoverContent
+                    className="w-auto p-0"
+                    align="start"
+                    onInteractOutside={(event) => {
+                      event.preventDefault() // Impede o fechamento ao clicar fora
+                    }}
+                  >
                     <Calendar
                       mode="single"
                       selected={field.value ?? undefined}

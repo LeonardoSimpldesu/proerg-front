@@ -31,7 +31,7 @@ export function Budget() {
 
   const [errorDialog, setErrorDialog] = useState(false)
   const [confirmDialog, setConfirmDialog] = useState(false)
-  const [PDFDialog, setPDFDialog] = useState(true)
+  const [PDFDialog, setPDFDialog] = useState(false)
 
   const [errosList, setErrosList] = useState({
     originalProject: false,
@@ -96,8 +96,8 @@ export function Budget() {
   }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    setConfirmDialog(true)
     console.log(values)
+    setConfirmDialog(true)
   }
 
   function onError(values: FieldErrors) {

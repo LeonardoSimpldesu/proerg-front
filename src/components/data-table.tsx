@@ -29,21 +29,12 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
-
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
 import { File, Plus } from 'lucide-react'
-import { UserForm } from '@/app/dashboard/user/components/userForm'
 import Link from 'next/link'
+import { UserDialogWrapper } from '@/app/dashboard/user/components/userDialogWrapper'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -138,24 +129,16 @@ export function DataTable<TData, TValue>({
               Remover filtros
             </Button>
 
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button className="ml-auto gap-2 w-fit">
-                  <Plus size={18} />
-                  Novo Usuário
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Cadastre um novo usuário</DialogTitle>
-                  <DialogDescription>
-                    Adicione as informações necessárias do usuário e clique em
-                    salvar
-                  </DialogDescription>
-                </DialogHeader>
-                <UserForm />
-              </DialogContent>
-            </Dialog>
+            <UserDialogWrapper
+              dialogDescription="Adicione as informações necessárias do usuário e clique em
+                    salvar"
+              dialogTitle="Cadastre um novo usuário"
+            >
+              <Button className="ml-auto gap-2 w-fit">
+                <Plus size={18} />
+                Novo Usuário
+              </Button>
+            </UserDialogWrapper>
           </>
         ) : (
           <>
@@ -201,7 +184,9 @@ export function DataTable<TData, TValue>({
                 <SelectItem value="CONCLUIDO">Concluido</SelectItem>
               </SelectContent>
             </Select>
-            <Button variant={'ghost'}>Remover filtros</Button>
+            <Button variant={'ghost'} onClick={() => setColumnFilters([])}>
+              Remover filtros
+            </Button>
 
             <Button className="ml-auto gap-2 w-full xl:w-fit" asChild>
               <Link href={'/budget'}>

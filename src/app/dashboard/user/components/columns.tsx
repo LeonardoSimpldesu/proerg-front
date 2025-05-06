@@ -26,15 +26,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
-import { UserForm } from './userForm'
+import { UserDialogWrapper } from './userDialogWrapper'
 
 export const columns: ColumnDef<IUser>[] = [
   {
@@ -177,26 +169,15 @@ export const columns: ColumnDef<IUser>[] = [
               </AlertDialog>
             )}
             <DropdownMenuSeparator />
-            <Dialog>
-              <DialogTrigger asChild>
-                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-                  Editar usuário
-                </DropdownMenuItem>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Atualize os dados do usuário</DialogTitle>
-                  <DialogDescription>
-                    Faça as alterações do usuário e clique em salvar
-                  </DialogDescription>
-                </DialogHeader>
-                <UserForm
-                  userName={row.original.userName}
-                  email={row.original.email}
-                  role={row.original.role}
-                />
-              </DialogContent>
-            </Dialog>
+            <UserDialogWrapper
+              dialogTitle="Atualize os dados do usuário"
+              dialogDescription="Faça as alterações do usuário e clique em salvar"
+              userData={row.original}
+            >
+              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                Editar usuário
+              </DropdownMenuItem>
+            </UserDialogWrapper>
           </DropdownMenuContent>
         </DropdownMenu>
       )
